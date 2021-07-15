@@ -1,0 +1,9 @@
+- hosts: demoserver
+  become: yes
+  tasks:
+    - name: yum install git 
+      yum:
+        name: git
+        state: present
+        lock_timeout: 180
+ 
