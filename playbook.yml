@@ -1,9 +1,18 @@
 - hosts: demoserver
-  become: yes
+  become: true
   tasks:
     - name: yum install git 
       yum:
         name: git
         state: present
         lock_timeout: 180
- 
+    - name: install httpd
+      yum: name=httpd state=latest
+    - name: apache start / enable
+      service: name=httpd state=started enabled=yes 
+    - name: install mysql repository
+      yum: name=http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm state=present
+    - name: install mysql
+      yum: name=mysql-server state=latest
+    - name: mysql start / enable
+      service: name=mysqld state=started enabled=yes
