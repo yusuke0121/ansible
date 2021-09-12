@@ -1,11 +1,8 @@
 - hosts: demoserver
   become: true
   tasks:
-    - name: yum install git 
-      yum:
-        name: git
-        state: present
-        lock_timeout: 180
+    - name: install git 
+      yum: name=git state=present
     - name: install httpd
       yum: name=httpd state=latest
     - name: apache start / enable
